@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class CurrencyConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double amount, result;
+        String fromCurrency, toCurrency;
+
+        System.out.print("Enter the amount: ");
+        amount = scanner.nextDouble();
+
+        System.out.print("Enter the source currency (e.g., USD, EUR): ");
+        fromCurrency = scanner.next();
+
+        System.out.print("Enter the target currency (e.g., USD, EUR): ");
+        toCurrency = scanner.next();
+
+        result = convertCurrency(amount, fromCurrency, toCurrency);
+        System.out.println("Converted amount: " + result + " " + toCurrency);
+
+        scanner.close();
+    }
+
+    public static double convertCurrency(double amount, String fromCurrency, String toCurrency) {
+      
+        double usdToEur = 0.85;
+        double eurToUsd = 1.18;
+
+        if (fromCurrency.equalsIgnoreCase("USD") && toCurrency.equalsIgnoreCase("EUR")) {
+            return amount * usdToEur;
+        } else if (fromCurrency.equalsIgnoreCase("EUR") && toCurrency.equalsIgnoreCase("USD")) {
+            return amount * eurToUsd;
+        } else {
+            System.out.println("Unsupported currency conversion.");
+            return 0.0;
+        }
+    }
+}
+
